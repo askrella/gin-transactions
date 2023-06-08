@@ -1,4 +1,4 @@
-package pkg
+package gintx
 
 import (
 	"github.com/gin-gonic/gin"
