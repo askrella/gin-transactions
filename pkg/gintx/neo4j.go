@@ -1,6 +1,7 @@
 package gintx
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	"github.com/sirupsen/logrus"
@@ -37,7 +38,12 @@ func BuildNeo4JTransactionMiddleware(sessionConfig neo4j.SessionConfig, driver n
 
 		defer func() {
 			if err := recover(); err != nil {
-				logrus.Info("Starting neo4j recovery process.")
+				encodedError, marshalError := json.Marshal(err)
+				if marshalError != nil {
+					encodedError = []byte("MARSHAL_ERROR")
+				}
+
+				logrus.WithField("error", encodedError).Info("Starting neo4j recovery process.")
 
 				err := tx.Rollback(ctx)
 				if err != nil {
