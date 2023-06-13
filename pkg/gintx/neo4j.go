@@ -43,7 +43,7 @@ func BuildNeo4JTransactionMiddleware(sessionConfig neo4j.SessionConfig, driver n
 					encodedError = []byte("MARSHAL_ERROR")
 				}
 
-				logrus.WithField("error", encodedError).Info("Starting neo4j recovery process.")
+				logrus.WithField("error", string(encodedError)).Info("Starting neo4j recovery process.")
 
 				err := tx.Rollback(ctx)
 				if err != nil {
