@@ -5,23 +5,21 @@ The "gin-transactions" library, developed by [Askrella](https://askrella.de), pr
 # Database support
 
 - Neo4j
-- Gorm (Coming soon)
+- Gorm
 
 # Installation
 ```
 go get -u github.com/askrella/gin-transactions
 ```
 
-# Usage
-
-## Register middleware in gorm route
-
+# Register gin middleware
+```
+gintx.BuildNeo4JTransactionMiddleware
+gintx.BuildGormTransactionMiddleware
 ```
 
+# Retrieve database transaction
 ```
-
-## Retrieve database transaction
-
-```
-
+gintx.GetNeo4JTransaction
+gintx.GetGormTransaction
 ```
