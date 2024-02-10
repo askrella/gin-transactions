@@ -47,7 +47,7 @@ func BuildNeo4JTransactionMiddleware(sessionConfig neo4j.SessionConfig, driver n
 
 				err := tx.Rollback(ctx)
 				if err != nil {
-					logrus.WithField("error", err)).Error("Cannot rollback neo4j transaction.")
+					logrus.WithField("error", err).Error("Cannot rollback neo4j transaction.")
 					return
 				}
 			} else if ctx.Writer.Status() >= http.StatusInternalServerError {
@@ -55,7 +55,7 @@ func BuildNeo4JTransactionMiddleware(sessionConfig neo4j.SessionConfig, driver n
 
 				err := tx.Rollback(ctx)
 				if err != nil {
-					logrus.WithField("error", err)).Error("Cannot rollback neo4j transaction.")
+					logrus.WithField("error", err).Error("Cannot rollback neo4j transaction.")
 					return
 				}
 			} else {
@@ -63,7 +63,7 @@ func BuildNeo4JTransactionMiddleware(sessionConfig neo4j.SessionConfig, driver n
 
 				err := tx.Commit(ctx)
 				if err != nil {
-					logrus.WithField("error", err)).Error("Cannot commit neo4j transaction.")
+					logrus.WithField("error", err).Error("Cannot commit neo4j transaction.")
 					return
 				}
 			}
